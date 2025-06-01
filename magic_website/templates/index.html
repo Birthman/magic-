@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+
+
+
+<link rel="icon" href="data:,">
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+/>
+
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Magic Token - Make a Wish</title>
+
+  <!-- Styles and AOS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <!-- tsparticles library -->
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@3/tsparticles.bundle.min.js"></script>
+<style>
+
+.centered-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 30px auto;
+}
+
+.centered-image img {
+  width: 200px;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+}
+
+
+
+
+
+.token-button-wrapper {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.token-button {
+  display: inline-block;
+  padding: 12px 28px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #fff;
+  background: linear-gradient(45deg, #00f5ff, #9900ff);
+  border: none;
+  border-radius: 30px;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  animation: glow-pulse 2s infinite alternate;
+}
+
+.token-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.8);
+  background: linear-gradient(45deg, #00ffff, #cc00ff);
+}
+
+@keyframes glow-pulse {
+  0% {
+    box-shadow: 0 0 12px rgba(0, 255, 255, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 25px rgba(255, 0, 255, 0.7);
+  }
+}
+
+
+
+
+</style>
+
+
+
+</head>
+
+
+
+<body>
+
+
+<div class="token-button-wrapper">
+  <a href="#" class="token-button" target="_blank">Buy Magic Token(XMC)</a><p></p>
+<a href="#" class="token-button" target="_blank">(XMC)</a>
+</div>
+
+
+
+  <canvas id="lantern-canvas"></canvas>
+  <div id="particles-xmc"></div>
+ 
+
+
+
+  <!-- Particle Background Layer -->
+ 
+
+  <!-- Background Music & Whoosh -->
+  <audio id="bg-music" loop autoplay muted>
+    <source src="{{ url_for('static', filename='audio/background.mp3') }}" type="audio/mpeg">
+  </audio>
+
+  <audio id="whoosh-sound">
+    <source src="{{ url_for('static', filename='audio/genie_whoosh.mp3') }}" type="audio/mpeg">
+  </audio>
+
+
+  <!-- Music Toggle Button -->
+  <button onclick="toggleMusic()" style="position: fixed; top: 10px; right: 10px;">🔊 Music</button>
+
+  <!-- Content -->
+  <div class="container" style="text-align:center; padding: 40px; position: relative; z-index: 1;">
+    <h1 class="glow" data-aos="fade-down" data-aos-duration="1000">
+      🧞‍♂️ Make a Wish with Magic Token (XMC)
+    </h1>
+
+    <p data-aos="fade-up" data-aos-delay="200" data-aos-duration="1200" style="max-width: 600px; margin: 20px auto; font-size: 1.2rem;">
+      <strong>Magic Token (XMC)</strong> is more than just a digital asset—it's a wish carried through the blockchain winds.
+      Powered by ancient lore and modern tech, XMC is your gateway to possibility. The Jinni is always listening,
+      silently watching your desires unfold.
+    </p>
+
+    <p data-aos="fade-up" data-aos-delay="400" data-aos-duration="1200" style="max-width: 600px; margin: 20px auto; font-size: 1.2rem;">
+      While the future of XMC is filled with potential, it's important to understand that the cryptocurrency market is highly volatile.
+      Just like with Bitcoin or any other coin, value may rise—or fall. There are no guarantees, only opportunities.
+    </p>
+
+    <p data-aos="fade-up" data-aos-delay="600" data-aos-duration="1200" style="max-width: 600px; margin: 20px auto; font-size: 1.2rem;">
+      But who knows... if your timing aligns with destiny, your investment in Magic Token may one day help you fulfill the wishes
+      you’ve been holding onto. ✨
+    </p>
+
+    <form id="wish-form" data-aos="zoom-in" data-aos-delay="800">
+      <input type="text" id="wish-input" placeholder="Type your wish..." required />
+      <button type="submit">Send to Jinni</button>
+    </form>
+
+    <p id="wish-response" data-aos="fade-up" data-aos-delay="1000"></p>
+  </div>
+
+
+
+
+<div class="centered-image">
+  <img src="{{ url_for('static', filename='images/Magic.png') }}" alt="Magic Lamp">
+</div>
+
+
+
+
+
+
+  <!-- AOS Animation JS -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>AOS.init();</script>
+
+  <!-- Custom JS with wish logic + particles -->
+  <script src="{{ url_for('static', filename='js/magic.js') }}"></script>
+
+
+<footer class="site-footer">
+  <div class="footer-content">
+    <p>🪄 Powered by Magic Token (XMC) — Make a Wish, Believe in the Future</p>
+    <div class="social-icons">
+      <a href="https://x.com/xmcmagic?=T8Nld6Wjlf4_xgB1YsgjuA&s=09" target="_blank" class="social twitter" aria-label="Twitter">
+        <i class="fab fa-twitter"></i>
+      </a>
+      <a href="https://t.me/magicxmc" target="_blank" class="social telegram" aria-label="Telegram">
+        <i class="fab fa-telegram"></i>
+      </a>
+      <a href="https://github.com/" target="_blank" class="social github" aria-label="GitHub">
+        <i class="fab fa-github"></i>
+      </a>
+      <a href="mailto:youremail@example.com" class="social email" aria-label="Email">
+        <i class="fas fa-envelope"></i>
+      </a>
+    </div>
+  </div>
+</footer>
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
